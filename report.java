@@ -1,34 +1,35 @@
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class report {
 
     public static int[] solution(String[] id_list, String[] report, int k) {
-        Map<String, Integer>  answer = new HashMap<>();
-        for(String user : id_list){
-            List<String> reportUser = new ArrayList<>();
-            for (int i= 0; i< report.length; i++){
-                String[] list = report[i].split(" ");
-                if(list[1].equals(user) && !reportUser.contains(list[0]) ){
-                    reportUser.add(list[0]);
-                }
-            }
-            if(reportUser.size() >= k){
-                for (String who : reportUser){
-                    if(!answer.containsKey(who)){
-                        answer.put(who,1);
-                    }else{
-                        answer.put(who,answer.get(who)+1);
-                    }
-                }
-            }
-        }
         int[] end = new int[id_list.length];
+        Map<String, Object> total = new HashMap<>();
+        List<String> arrList =  Arrays.asList(report).stream().distinct().collect(Collectors.toList());
+        for(String id : id_list){
+            System.out.println("id : " +id);
+            Map<String ,Object> reportTotal = new HashMap<>();
+            int[] count = {0,0};
+            List<String> reportId = new ArrayList<>();
+            for(String r: arrList){
+                String[] rep = r.split(" ");
+                if(rep[0].equals(id)){
+                    count[0]++;
+                }else if(rep[1].equals(id)){
+                    count[1]++;
+                    reportId.add(rep[0]);
+                }
+            }
+            reportTotal.put("reportId",reportId);
+            reportTotal.put("count",count);
 
+            total.put(id, reportTotal);
+        }
 
-        for (int i=0; i<end.length;i++){
-            if(answer.get(id_list[i]) != null){
-                end[i] = answer.get(id_list[i]);
-            }else {end[i] =0;}
+        for (int i=0; i<total.size();i++){
+            total.get(1);
+            System.out.println("total"+ total.get(i));
         }
 
         return end;
