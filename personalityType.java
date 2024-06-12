@@ -14,6 +14,7 @@ public class personalityType {
         return end;
     }
     public Map<String, Integer> setScore (){
+        
 
 
         return new HashMap<>();
