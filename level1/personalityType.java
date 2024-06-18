@@ -7,6 +7,7 @@ public class personalityType {
     public static String solution(String[] survey, int[] choices) {
         String result ="";
         Map<Integer, String[]> type= new HashMap<>();
+
         type.put(0, new String[]{"R", "T"});
         type.put(1, new String[]{"C", "F"});
         type.put(2, new String[]{"J", "M"});
